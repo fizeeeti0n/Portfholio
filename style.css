@@ -386,14 +386,14 @@
             box-shadow: 0 10px 20px rgba(0, 245, 255, 0.4);
         }
 
-    /* Contact Section */
+     /* Contact Section */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background: transparent;
+            background:transparent;
             border-radius: 20px;
             padding: 3rem;
-            border: 1px solidtransparent;
+            border: 1px transparent;
         }
 
         .form-group {
@@ -446,8 +446,9 @@
         .submit-btn {
             width: 100%;
             padding: 1rem;
-           background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
+            background: linear-gradient(45deg, #00f5ff, #8338ec);
             border: none;
+            border-radius: 10px;
             color: white;
             font-size: 1.1rem;
             font-weight: 600;
