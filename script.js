@@ -132,7 +132,7 @@ function initThreeJS() {
         // Initialize EmailJS
         function initEmailJS() {
             // Initialize EmailJS with your public key
-            emailjs.init("service_kd4domt"); // Replace with your EmailJS public key
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
         }
 
         // Form submission with email functionality
@@ -146,7 +146,7 @@ function initThreeJS() {
             button.disabled = true;
             
             // Send email using EmailJS
-            emailjs.sendForm('service_kd4domt', 'template_rzak5io', form)
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     button.innerHTML = '<i class="fas fa-check"></i> Message Sent Successfully!';
