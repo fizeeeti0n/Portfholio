@@ -236,14 +236,27 @@
             border: 1px transparent;
         }
 
-    .about-image {
-    width: 400px; /* Or any fixed width you desire, e.g., 100% for responsiveness */
-    height: 400px; /* (400 / 16) * 9 = 225. This maintains 16:9 aspect ratio */
-    display: block; /* Ensures margin auto works and it behaves as a block element */
-    margin: 0 auto; /* Centers the image horizontally */
-    object-fit: cover; /* This is crucial: scales the image to cover the 400x225 area, cropping excess */
-    overflow: hidden; /* Hides any parts of the image cropped by object-fit */
-}
+        .about-image {
+
+            width: 400px;
+
+            height:400px;
+
+            background: transparent;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto;
+
+            position: fill;
+
+            overflow: hidden;
+
+        }
         .about-image::before {
             content: '';
             position: absolute;
