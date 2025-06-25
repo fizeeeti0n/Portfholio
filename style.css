@@ -23,90 +23,122 @@
             pointer-events: none;
         }
 
-        /* Navigation Menu */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: transparent;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px transparent;
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
+       /* Navigation Menu */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
 
-        .navbar.scrolled {
-            background: tra;
-            box-shadow: 0 5px 30px transparent;
-        }
+.navbar.scrolled {
+    background: transparent;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+}
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
 
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #565858, #dfa934);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #565858, #dfa934);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(223, 169, 52, 0.5);
+    transition: text-shadow 0.3s ease;
+}
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
+.nav-logo:hover {
+    text-shadow: 0 0 10px #dfa934, 0 0 20px rgba(223, 169, 52, 0.7);
+}
 
-        .nav-item {
-            position: relative;
-        }
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
 
-        .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+.nav-item {
+    position: relative;
+}
 
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
-            transition: all 0.3s ease;
-            z-index: -1;
-            border-radius: 25px;
-        }
+.nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    /* Removed border-radius from here to remove the pill shape on the link itself */
+    border-radius: 0; /* Ensures it's a rectangle if there's any background */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
 
-        .nav-link:hover,
-        .nav-link.active {
-            color: white;
-            transform: translateY(-2px);
-        }
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Hidden by default */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
+    transition: all 0.3s ease;
+    z-index: -1;
+    border-radius: 0; /* Makes the ::before background a rectangle */
+    opacity: 0; /* Start with no background color initially */
+}
 
-        .nav-link:hover::before,
-        .nav-link.active::before {
-            left: 0;
-        }
+.nav-link:hover,
+.nav-link.active {
+    color: white;
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    /* Keep box-shadow if you want the glow without the background shape */
+    box-shadow: 0 0 10px rgba(194, 166, 105, 0.7),
+                0 0 20px rgba(233, 107, 69, 0.5);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    left: 0; /* Makes the gradient background appear */
+    opacity: 1; /* Make the background fully visible */
+    box-shadow: 0 0 15px rgba(233, 107, 69, 0.7); /* Glow effect on the active background box */
+}
+
+/* Specific style for when a nav-link is physically clicked (held down) */
+.nav-link:active {
+    color: white;
+    transform: translateY(0);
+    text-shadow: 0 0 15px rgba(255,255,255,1), 0 0 25px rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(194, 166, 105, 1),
+                0 0 30px rgba(233, 107, 69, 0.8),
+                0 0 40px rgba(233, 107, 69, 0.6);
+}
+
+.nav-link:active::before {
+    left: 0;
+    transform: scale(1.05);
+    opacity: 1; /* Ensure background is visible */
+    box-shadow: 0 0 20px rgba(233, 107, 69, 1);
+}
 
         .mobile-menu-toggle {
             display: none;
@@ -236,14 +268,19 @@
             border: 1px transparent;
         }
 
-    .about-image {
-    width: 400px; /* Or any fixed width you desire, e.g., 100% for responsiveness */
-    height: 400px; /* (400 / 16) * 9 = 225. This maintains 16:9 aspect ratio */
-    display: block; /* Ensures margin auto works and it behaves as a block element */
-    margin: 0 auto; /* Centers the image horizontally */
-    object-fit: cover; /* This is crucial: scales the image to cover the 400x225 area, cropping excess */
-    overflow: hidden; /* Hides any parts of the image cropped by object-fit */
-}
+        .about-image {
+            width: 225px;
+            height:400px;
+
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: fill;
+            overflow: hidden;
+        }
+
         .about-image::before {
             content: '';
             position: absolute;
@@ -341,7 +378,7 @@
 
         .project-image {
             height: 200px;
-            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -381,14 +418,14 @@
             box-shadow: 0 10px 20px rgba(0, 245, 255, 0.4);
         }
 
-        /* Contact Section */
+    /* Contact Section */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
             background:transparent;
             border-radius: 20px;
             padding: 3rem;
-            border: 1px solid transparent;
+            border: 1px transparent;
         }
 
         .form-group {
@@ -401,15 +438,15 @@
             padding: 1rem;
             border: 2px transparent;
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            color: transparent;
+            background: transparent;
+            color: white;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: tansparent;
+            border-color: #00f5ff;
             box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
         }
 
@@ -429,7 +466,7 @@
             left: 0.5rem;
             font-size: 0.8rem;
             color: #00f5ff;
-            background: #1a1a2e;
+            background: transparent;
             padding: 0 0.5rem;
         }
 
@@ -441,7 +478,7 @@
         .submit-btn {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
+           background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             border: none;
             border-radius: 10px;
             color: white;
@@ -456,12 +493,14 @@
             box-shadow: 0 15px 30px rgba(0, 245, 255, 0.4);
         }
 
+
+
         /* Footer */
         .footer {
             text-align: center;
             padding: 2rem;
             background: transparent;
-            backdrop-filter: blur(20px);
+        
         }
 
         .social-links {
