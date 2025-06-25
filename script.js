@@ -146,7 +146,7 @@
 
         // Download resume function
 function downloadResume() {
-    const resumeUrl = '/cv/Own CV.pdf'; // Make sure this path is correct and accessible
+    const resumeUrl = '/cv/Own C.pdf'; // Make sure this path is correct and accessible
 
     const a = document.createElement('a');
     a.href = resumeUrl;
