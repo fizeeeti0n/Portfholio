@@ -1,51 +1,105 @@
-        // Three.js Background Animation
-        function initThreeJS() {
-            const container = document.getElementById('canvas-container');
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true });
-            
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            container.appendChild(renderer.domElement);
+function initThreeJS() {
+    const canvas = document.getElementById('global-canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
 
-            // Create particles
-            const geometry = new THREE.BufferGeometry();
-            const particles = 1000;
-            const positions = new Float32Array(particles * 3);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0); // Transparent background
 
-            for (let i = 0; i < particles * 3; i++) {
-                positions[i] = (Math.random() - 0.5) * 2000;
-            }
+    const particleSystems = [];
 
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    // Background particles (cyan)
+    const bgGeometry = new THREE.BufferGeometry();
+    const bgParticles = 1500;
+    const bgPositions = new Float32Array(bgParticles * 3);
+    for (let i = 0; i < bgParticles * 3; i++) {
+        bgPositions[i] = (Math.random() - 0.5) * 3000;
+    }
+    bgGeometry.setAttribute('position', new THREE.BufferAttribute(bgPositions, 3));
 
-            const material = new THREE.PointsMaterial({
-                color: 0x00f5ff,
-                size: 2,
-                transparent: true,
-                opacity: 0.8
-            });
+    const bgMaterial = new THREE.PointsMaterial({
+        color: 0x00f5ff,
+        size: 1,
+        transparent: true,
+        opacity: 0.3
+    });
+    const bgPoints = new THREE.Points(bgGeometry, bgMaterial);
+    scene.add(bgPoints);
+    particleSystems.push({ points: bgPoints, speed: { x: 0.0005, y: 0.001 } });
 
-            const points = new THREE.Points(geometry, material);
-            scene.add(points);
+    // Foreground particles (cyan)
+    const fgGeometry = new THREE.BufferGeometry();
+    const fgParticles = 800;
+    const fgPositions = new Float32Array(fgParticles * 3);
+    for (let i = 0; i < fgParticles * 3; i++) {
+        fgPositions[i] = (Math.random() - 0.5) * 2000;
+    }
+    fgGeometry.setAttribute('position', new THREE.BufferAttribute(fgPositions, 3));
 
-            camera.position.z = 500;
+    const fgMaterial = new THREE.PointsMaterial({
+        color: 0x00f5ff,
+        size: 2.5,
+        transparent: true,
+        opacity: 0.6
+    });
+    const fgPoints = new THREE.Points(fgGeometry, fgMaterial);
+    scene.add(fgPoints);
+    particleSystems.push({ points: fgPoints, speed: { x: 0.001, y: 0.0015 } });
 
-            // Animation loop
-            function animate() {
-                requestAnimationFrame(animate);
-                points.rotation.x += 0.001;
-                points.rotation.y += 0.002;
-                renderer.render(scene, camera);
-            }
+    // Accent particles (cyan)
+    const accentGeometry = new THREE.BufferGeometry();
+    const accentParticles = 400;
+    const accentPositions = new Float32Array(accentParticles * 3);
+    for (let i = 0; i < accentParticles * 3; i++) {
+        accentPositions[i] = (Math.random() - 0.5) * 2500;
+    }
+    accentGeometry.setAttribute('position', new THREE.BufferAttribute(accentPositions, 3));
 
-            animate();
+    const accentMaterial = new THREE.PointsMaterial({
+        color: 0x00f5ff,
+        size: 1.8,
+        transparent: true,
+        opacity: 0.4
+    });
+    const accentPoints = new THREE.Points(accentGeometry, accentMaterial);
+    scene.add(accentPoints);
+    particleSystems.push({ points: accentPoints, speed: { x: 0.0008, y: 0.0012 } });
+
+    camera.position.z = 1000;
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        particleSystems.forEach(system => {
+            system.points.rotation.x += system.speed.x;
+            system.points.rotation.y += system.speed.y;
+        });
+
+        const time = Date.now() * 0.0005;
+        particleSystems.forEach((system, index) => {
+            system.points.position.y = Math.sin(time + index) * 10;
+            system.points.position.x = Math.cos(time + index * 0.5) * 5;
+        });
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
 
             // Handle window resize
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // Parallax effect based on scroll
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset * 0.0005;
+                particleSystems.forEach((system, index) => {
+                    system.points.rotation.z = scrolled * (index + 1) * 0.1;
+                });
             });
         }
 
@@ -145,28 +199,102 @@
         }
 
         // Download resume function
-function downloadResume() {
-    const resumeUrl = '/cv/Own CV.pdf'; // Make sure this path is correct and accessible
+        function downloadResume() {
+            // Create a simple text file as placeholder
+            const resumeContent = `
+AHANAF SHAHRIAR NAFIZ
+Creative Developer | AI Enthusiast
 
-    const a = document.createElement('a');
-    a.href = resumeUrl;
-    a.download = 'Resume.pdf';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-}
+Contact:
+Email: ahanaf.shahriar.nafiz@gmail.com
+LinkedIn: https://www.linkedin.com/in/fizeeeti0n/
 
+Skills:
+- Web Development (HTML, CSS, JavaScript)
+- Python Programming
+- AI/ML Development
+- Firebase Integration
+- Node.js Backend Development
 
-        // Smooth scrolling for navigation
-        function smoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+This is a placeholder resume. Please replace with your actual resume content.
+            `;
+            
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Ahanaf_Shahriar_Nafiz_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Navigation functionality
+        function initNavigation() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const sections = document.querySelectorAll('section[id]');
+
+            // Mobile menu toggle
+            mobileToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Close mobile menu when clicking on links
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    const icon = mobileToggle.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                });
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // Update active nav link based on scroll position
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop - 80; // Account for navbar height
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
                         });
                     }
                 });
@@ -177,15 +305,15 @@ function downloadResume() {
         document.addEventListener('DOMContentLoaded', () => {
             initThreeJS();
             handleScrollAnimations();
-            smoothScroll();
+            initNavigation();
             initEmailJS();
         });
 
         // Parallax effect for hero section
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
+            const hero = document.querySelector('.hero-content');
             if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
             }
         });

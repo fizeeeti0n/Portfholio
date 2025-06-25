@@ -1,15 +1,152 @@
-      * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
+          body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             color: #ffffff;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            scroll-behavior: smooth;}
+        
+
+        /* Global animated background */
+        #global-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navigation Menu */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: transparent;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px transparent;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: tra;
+            box-shadow: 0 5px 30px transparent;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #565858, #dfa934);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
+            transition: all 0.3s ease;
+            z-index: -1;
+            border-radius: 25px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            left: 0;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 46, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
         }
 
         /* Hero Section */
@@ -20,15 +157,6 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-        }
-
-        #canvas-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
         }
 
         .hero-content {
@@ -59,7 +187,7 @@
         .cta-button {
             display: inline-block;
             padding: 1rem 2rem;
-            background: transparent;
+            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             border: none;
             border-radius: 50px;
             color: white;
@@ -81,75 +209,60 @@
             padding: 80px 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title {
             font-size: 3rem;
             text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(45deg, #00f5ff, #ff006e);
+            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-  /* About Section */
+        /* About Section */
         .about-container {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 3rem;
             align-items: center;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
+            background: transparent;
+            
             border-radius: 20px;
             padding: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px transparent;
         }
 
-.about-image {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: #1a1a2e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 20px 40px rgba(0, 245, 255, 0.3);
-    z-index: 0; /* Ensure it holds the image and ::before correctly */
+    .about-image {
+    width: 400px; /* Or any fixed width you desire, e.g., 100% for responsiveness */
+    height: 400px; /* (400 / 16) * 9 = 225. This maintains 16:9 aspect ratio */
+    display: block; /* Ensures margin auto works and it behaves as a block element */
+    margin: 0 auto; /* Centers the image horizontally */
+    object-fit: cover; /* This is crucial: scales the image to cover the 400x225 area, cropping excess */
+    overflow: hidden; /* Hides any parts of the image cropped by object-fit */
 }
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            border-radius: 50%;
+            background: #1a1a2e;
+        }
 
-.about-image::before {
- display: none;}
+        .about-image i {
+            font-size: 8rem;
+            color: #00f5ff;
+            z-index: 1;
+        }
 
-
-/* For icon centered in the circle */
-.about-image img {
-    width: 150%;
-    height: 150%;
-    border-radius: 50%;
-    object-fit: cover;
-    position: relative;
-    z-index: 1;
-}
-
-/* Subtle 3D hover effect */
-.about-image:hover {
-    transform: translateY(-10px) rotateY(5deg);
-    box-shadow: 0 30px 60px rgba(0, 245, 255, 0.5);
-}
-/* For text beside or under image */
-.about-text {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    opacity: 0.9;
-    text-align: left;
-    margin-top: 2rem;
-}
-
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
 
         /* Skills Section */
         .skills-grid {
@@ -164,7 +277,7 @@
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
-            border: 1px solidtransparent;
+            border: 1px transparent;
             transition: all 0.3s ease;
             transform-style: preserve-3d;
         }
@@ -177,7 +290,7 @@
         .skill-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00f5ff, #8338ec);
+            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -199,7 +312,7 @@
 
         .skill-progress-bar {
             height: 100%;
-            background: linear-gradient(45deg, #00f5ff, #8338ec);
+            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             border-radius: 4px;
             transition: width 2s ease;
         }
@@ -212,7 +325,7 @@
         }
 
         .project-card {
-            background:transparent;
+            background: transparent;
             backdrop-filter: blur(20px);
             border-radius: 15px;
             overflow: hidden;
@@ -228,7 +341,7 @@
 
         .project-image {
             height: 200px;
-            background: linear-gradient(45deg, #00f5ff, #8338ec, #ff006e);
+            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -255,7 +368,7 @@
         .project-link {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: linear-gradient(45deg, #00f5ff, #8338ec);
+            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             border-radius: 20px;
             color: white;
             text-decoration: none;
@@ -272,11 +385,10 @@
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background: transparent;
-            backdrop-filter: blur(20px);
+            background:transparent;
             border-radius: 20px;
             padding: 3rem;
-            border: 1px solidtransparent;
+            border: 1px solid transparent;
         }
 
         .form-group {
@@ -287,17 +399,17 @@
         .form-input {
             width: 100%;
             padding: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px transparent;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
-            color: white;
+            color: transparent;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #00f5ff;
+            border-color: tansparent;
             box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
         }
 
@@ -329,7 +441,7 @@
         .submit-btn {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(45deg, #00f5ff, #8338ec);
+            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             border: none;
             border-radius: 10px;
             color: white;
@@ -348,7 +460,7 @@
         .footer {
             text-align: center;
             padding: 2rem;
-            background: rgba(0, 0, 0, 0.3);
+            background: transparent;
             backdrop-filter: blur(20px);
         }
 
