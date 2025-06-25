@@ -446,7 +446,7 @@
         .submit-btn {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(45deg, #00f5ff, #8338ec);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             border: none;
             border-radius: 10px;
             color: white;
