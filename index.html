@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahanaf Shahriar Nafiz - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emailjs-com/3.2.0/email.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <!-- Global Animated Background -->
+<canvas id="global-canvas" style="
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+"></canvas>>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">Ahanaf</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Ahanaf Shahriar Nafiz</h1>
+            <p class="tagline">Creative Developer | AI Enthusiast</p>
+            <a href="/cv/Own CV.pdf" class="cta-button" onclick="downloadResume()">
+                <i class="fas fa-download"></i> Download Resume
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+<section class="section fade-in" id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-container">
+        <div class="about-image-wrapper">
+            <img src="/photo/pp.jpg" alt="Ahanaf Shahriar Nafiz Profile Picture" class="about-image">
+        </div>
+        <div class="about-text">
+            <p>Hi, I'm Ahanaf, a passionate developer who loves to build smart web apps using AI, Python, and modern web tools. I'm constantly exploring new technologies and pushing the boundaries of what's possible in web development.</p>
+            <p>With a strong foundation in both frontend and backend technologies, I create seamless digital experiences that combine beautiful design with powerful functionality. My journey in tech is driven by curiosity and a desire to solve real-world problems through code.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Skills Section -->
+    <section class="section fade-in" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-html5"></i>
+                </div>
+                <div class="skill-name">Web Development</div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" data-width="90%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-python"></i>
+                </div>
+                <div class="skill-name">Python</div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" data-width="85%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="skill-name">AI/ML</div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" data-width="80%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="skill-name">Firebase</div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" data-width="75%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-node-js"></i>
+                </div>
+                <div class="skill-name">Node.js</div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" data-width="82%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-js-square"></i>
+                </div>
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" data-width="88%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section fade-in" id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">AI Chat Assistant</h3>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Data Analytics Dashboard</h3>
+                    <p class="project-description">Interactive web dashboard for data visualization and analytics, built with React and D3.js, featuring real-time data processing.</p>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Mobile App Backend</h3>
+                    <p class="project-description">RESTful API backend for a mobile application using Node.js and Firebase, handling user authentication and real-time data sync.</p>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Web Development Tools</h3>
+                    <p class="project-description">Collection of developer tools and utilities for web development, including code generators, validators, and performance analyzers.</p>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Interactive Game</h3>
+                    <p class="project-description">Browser-based interactive game built with JavaScript and Canvas API, featuring smooth animations and engaging gameplay mechanics.</p>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Cloud Integration</h3>
+                    <p class="project-description">Cloud-based application integrating multiple services and APIs, featuring automatic scaling and robust error handling.</p>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section fade-in" id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <form class="contact-form" onsubmit="handleSubmit(event)" id="contact-form">
+            <div class="form-group">
+                <input type="text" class="form-input" name="from_name" placeholder=" " required>
+                <label class="form-label">Name</label>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-input" name="from_email" placeholder=" " required>
+                <label class="form-label">Email</label>
+            </div>
+            <div class="form-group">
+                <textarea class="form-input form-textarea" name="message" placeholder=" " required></textarea>
+                <label class="form-label">Message</label>
+            </div>
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com/fizeeeeti0n" class="social-link" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/fizeeeti0n/" class="social-link" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:ahanaf.shahriar.nafiz@gmail.com" class="social-link">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <p>&copy; 2025 Ahanaf Shahriar Nafiz. All rights reserved.</p>
+    </footer>
+
+        <script src="script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+<script src="/js/background.js"></script>
+
+
+</body>
+</html>
