@@ -386,14 +386,14 @@
             box-shadow: 0 10px 20px rgba(0, 245, 255, 0.4);
         }
 
-        /* Contact Section */
+    /* Contact Section */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background:transparent;
+            background: transparent;
             border-radius: 20px;
             padding: 3rem;
-            border: 1px solid transparent;
+            border: 1px solidtransparent;
         }
 
         .form-group {
@@ -406,15 +406,15 @@
             padding: 1rem;
             border: 2px transparent;
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            color: transparent;
+            background: transparent;
+            color: white;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: tansparent;
+            border-color: #00f5ff;
             box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
         }
 
@@ -434,7 +434,7 @@
             left: 0.5rem;
             font-size: 0.8rem;
             color: #00f5ff;
-            background: #1a1a2e;
+            background: transparent;
             padding: 0 0.5rem;
         }
 
@@ -446,9 +446,8 @@
         .submit-btn {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
+           background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             border: none;
-            border-radius: 10px;
             color: white;
             font-size: 1.1rem;
             font-weight: 600;
@@ -460,6 +459,7 @@
             transform: translateY(-2px);
             box-shadow: 0 15px 30px rgba(0, 245, 255, 0.4);
         }
+
 
         /* Footer */
         .footer {
