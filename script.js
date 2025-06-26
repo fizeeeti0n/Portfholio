@@ -198,37 +198,7 @@ function initThreeJS() {
             }, 5000);
         }
 
-        // Download resume function
-        function downloadResume() {
-            // Create a simple text file as placeholder
-            const resumeContent = `
-AHANAF SHAHRIAR NAFIZ
-Creative Developer | AI Enthusiast
-
-Contact:
-Email: ahanaf.shahriar.nafiz@gmail.com
-LinkedIn: https://www.linkedin.com/in/fizeeeti0n/
-
-Skills:
-- Web Development (HTML, CSS, JavaScript)
-- Python Programming
-- AI/ML Development
-- Firebase Integration
-- Node.js Backend Development
-
-This is a placeholder resume. Please replace with your actual resume content.
-            `;
-            
-            const blob = new Blob([resumeContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Ahanaf_Shahriar_Nafiz_Resume.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
+       
 
         // Navigation functionality
         function initNavigation() {
