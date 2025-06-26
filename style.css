@@ -156,7 +156,7 @@
                 left: 0;
                 right: 0;
                 background: rgba(26, 26, 46, 0.95);
-                backdrop-filter: blur(20px);
+             
                 flex-direction: column;
                 padding: 2rem;
                 transform: translateY(-100%);
