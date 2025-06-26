@@ -39,7 +39,7 @@
 
 .navbar.scrolled {
     background: transparent;
-    box-shadow: 0 5px 30px trasparent;
+    box-shadow: 0 5px 30pxtrasparent;
 }
 
 .nav-container {
@@ -524,7 +524,7 @@
         }
 
         .social-link:hover {
-            background: linear-gradient(45deg, #00f5ff, #8338ec);
+            background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 245, 255, 0.4);
         }
