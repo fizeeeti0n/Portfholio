@@ -29,8 +29,8 @@
     top: 0;
     left: 0;
     right: 0;
-    background: transparent;
-    -webkit-backdrop-filter: blur(20px);
+    background: solid transparent;
+
     border-bottom: 1px solid transparent;
     z-index: 1000;
     padding: 1rem 0;
@@ -39,7 +39,7 @@
 
 .navbar.scrolled {
     background: transparent;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 30px trasparent;
 }
 
 .nav-container {
@@ -54,7 +54,7 @@
 .nav-logo {
     font-size: 1.5rem;
     font-weight: 700;
-    background: linear-gradient(45deg, #565858, #dfa934);
+    background: solidtransparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -118,7 +118,7 @@
 .nav-link:hover::before,
 .nav-link.active::before {
     left: 0; /* Makes the gradient background appear */
-    opacity: 1; /* Make the background fully visible */
+    opacity: 0; /* Make the background fully visible */
     box-shadow: 0 0 15px rgba(233, 107, 69, 0.7); /* Glow effect on the active background box */
 }
 
@@ -135,7 +135,7 @@
 .nav-link:active::before {
     left: 0;
     transform: scale(1.05);
-    opacity: 1; /* Ensure background is visible */
+    opacity: 0; /* Ensure background is visible */
     box-shadow: 0 0 20px rgba(233, 107, 69, 1);
 }
 
@@ -156,7 +156,7 @@
                 left: 0;
                 right: 0;
                 background: rgba(26, 26, 46, 0.95);
-             
+              
                 flex-direction: column;
                 padding: 2rem;
                 transform: translateY(-100%);
