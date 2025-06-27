@@ -289,7 +289,7 @@
     object-position: center; 
     border-radius: 0%; 
     display: block; 
-    position: relative; 
+    position: fill; 
     z-index: 1; 
 }
 
