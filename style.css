@@ -30,7 +30,7 @@
     left: 0;
     right: 0;
     background: transparent; /* Corrected: Removed 'solid' keyword */
-    backdrop-filter: blur(20px); /* This will apply blur if you want a frosted glass effect */
+    backdrop-filter: blur(0.5px); /* This will apply blur if you want a frosted glass effect */
     -webkit-backdrop-filter: blur(1px); /* For Safari support */
     border-bottom: 1px solid transparent;
     z-index: 1000;
