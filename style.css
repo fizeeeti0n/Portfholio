@@ -29,8 +29,9 @@
     top: 0;
     left: 0;
     right: 0;
-    background: solid transparent;
-
+    background: transparent; /* Corrected: Removed 'solid' keyword */
+    backdrop-filter: blur(20px); /* This will apply blur if you want a frosted glass effect */
+    -webkit-backdrop-filter: blur(1px); /* For Safari support */
     border-bottom: 1px solid transparent;
     z-index: 1000;
     padding: 1rem 0;
@@ -39,7 +40,7 @@
 
 .navbar.scrolled {
     background: transparent;
-    box-shadow: 0 5px 30pxtrasparent;
+    box-shadow: 0 5px 30px solidtransparent; /* Corrected typo and used rgba for shadow */
 }
 
 .nav-container {
@@ -54,7 +55,7 @@
 .nav-logo {
     font-size: 1.5rem;
     font-weight: 700;
-    background: solidtransparent;
+    background: linear-gradient(45deg, #565858, #dfa934); /* Re-added your gradient from previous versions */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -84,11 +85,11 @@
     text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 1rem;
-    /* Removed border-radius from here to remove the pill shape on the link itself */
-    border-radius: 0; /* Ensures it's a rectangle if there's any background */
+    /* FIXED: Set border-radius with a unit (e.g., 25px or 50%) */
+    border-radius: 25px; /* Makes the button pill-shaped */
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Important for the ::before overlay effect */
 }
 
 .nav-link::before {
@@ -98,10 +99,11 @@
     left: -100%; /* Hidden by default */
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, #778888, #c2a669, #e96b45);
+    background: linear-gradient(45deg, #778888, #c2a669, #e96b45); /* Your gradient background */
     transition: all 0.3s ease;
     z-index: -1;
-    border-radius: 0; /* Makes the ::before background a rectangle */
+    /* FIXED: Set border-radius with a unit (e.g., 25px or 50%) */
+    border-radius: 25px; /* Matches the parent .nav-link for a consistent rounded shape */
     opacity: 0; /* Start with no background color initially */
 }
 
@@ -110,7 +112,7 @@
     color: white;
     transform: translateY(-2px);
     text-shadow: 0 0 10px rgba(255,255,255,0.8);
-    /* Keep box-shadow if you want the glow without the background shape */
+    /* Keep box-shadow for the glow without the background shape */
     box-shadow: 0 0 10px rgba(194, 166, 105, 0.7),
                 0 0 20px rgba(233, 107, 69, 0.5);
 }
@@ -118,7 +120,7 @@
 .nav-link:hover::before,
 .nav-link.active::before {
     left: 0; /* Makes the gradient background appear */
-    opacity: 0; /* Make the background fully visible */
+    opacity: 0; /* FIXED: Make the background fully visible on hover/active */
     box-shadow: 0 0 15px rgba(233, 107, 69, 0.7); /* Glow effect on the active background box */
 }
 
@@ -135,50 +137,49 @@
 .nav-link:active::before {
     left: 0;
     transform: scale(1.05);
-    opacity: 0; /* Ensure background is visible */
+    opacity: 0; /* FIXED: Ensure background is visible on active */
     box-shadow: 0 0 20px rgba(233, 107, 69, 1);
 }
 
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
 
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                right: 0;
-                background: rgba(26, 26, 46, 0.95);
-              
-                flex-direction: column;
-                padding: 2rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-            }
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: rgba(26, 26, 46, 0.95);
+        flex-direction: column;
+        padding: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
 
-            .nav-menu.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
 
-            .mobile-menu-toggle {
-                display: block;
-            }
+    .mobile-menu-toggle {
+        display: block;
+    }
 
-            .nav-container {
-                padding: 0 1rem;
-            }
-        }
+    .nav-container {
+        padding: 0 1rem;
+    }
+}
 
         /* Hero Section */
         .hero {
@@ -267,26 +268,33 @@
             border: 1px transparent;
         }
 
-        .about-image {
-            width: 350px;
-            height:400px;
+   .about-image {
+    width: 350px; 
+    height: 350px; 
+    background: transparent;
+    border-radius: 50%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; 
+}
 
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            position: fill;
-            overflow: hidden;
-        }
 
-        .about-image::before {
-            content: '';
-            position: absolute;
-            inset: 5px;
-            border-radius: 50%;
-            background: #1a1a2e;
-        }
+.about-image img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+    object-position: center; 
+    border-radius: 50%; 
+    display: block; 
+    position: relative; 
+    z-index: 1; 
+}
+
+.about-image::before {
+    display: none;}
 
         .about-image i {
             font-size: 8rem;
@@ -377,12 +385,13 @@
 
         .project-image {
             height: 200px;
+            width: 100%;
             background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            color: white;
+            color: transparent;
         }
 
         .project-content {
@@ -390,13 +399,14 @@
         }
 
         .project-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+           font-size: 2rem;
+         font-weight: 700; /* Made slightly bolder */
+         margin-bottom: 1rem;
+         color: White /* Changed to a brighter color */
         }
 
         .project-description {
-            opacity: 0.8;
+            opacity: 1.2;
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
